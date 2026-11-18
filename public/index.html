@@ -1,18 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Balado Dashboard</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clan statistics</title>
+    <script>
+        // Pick the saved theme, else the device theme, before the page paints (avoids a flash)
+        (function () {
+            var theme = 'dark';
+            try {
+                theme = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            } catch (e) {}
+            document.documentElement.dataset.theme = theme;
+        })();
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="pages/style.css">
 </head>
-<body>
-  <main id="app">
-    <p class="status">Loading clan…</p>
-  </main>
-
-  <!-- Order matters: api.js first, then render.js -->
-  <script src="api.js"></script>
-  <script src="render.js"></script>
+<body class="min-h-screen flex flex-col antialiased">
+    <main class="w-full max-w-5xl mx-auto px-4 pt-4 pb-28 flex-1">
+        <header id="clanHeader" class="w-full pt-3"></header>
+        <section id="section-about" class="w-full"></section>
+        <section id="section-members" class="w-full hidden-section"></section>
+        <section id="section-battle" class="w-full hidden-section py-3 pb-28 text-soft text-sm">
+            <div id="battleTabs"></div>
+            <div id="section-war" class="w-full"></div>
+            <div id="section-cwl" class="w-full hidden"></div>
+            <div id="section-raid" class="w-full hidden"></div>
+        </section>
+        <section id="section-settings" class="w-full hidden-section"></section>
+    </main>
+    <nav id="bottomToolbar" aria-label="Main Navigation">
+        <button id="tab-about" class="active">
+            <span class="material-symbols-outlined nav-icon">home</span><span class="nav-label">Home</span>
+        </button>
+        <button id="tab-members">
+            <span class="material-symbols-outlined nav-icon">groups</span><span class="nav-label">Member</span>
+        </button>
+        <button id="tab-battle">
+            <span class="material-symbols-outlined nav-icon">swords</span><span class="nav-label">Battle</span>
+        </button>
+    </nav>
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>
+
+
