@@ -8,17 +8,5 @@ directory = "./public"
 binding = "ASSETS"
 run_worker_first = [
     "/api/*",
-    "/health",
-    "/clan",
-    "/currentwar",
-    "/raid",
-    "/cwl",
-    "/cwl/groups"
+    "/clan"
 ]
-[triggers]
-crons = ["*/10 * * * *"]
-
-[[d1_databases]]
-binding = "DB"
-database_name = "balado-archive"
-database_id = "842151d8-a6c8-414a-a650-40ffbe5ce619"
